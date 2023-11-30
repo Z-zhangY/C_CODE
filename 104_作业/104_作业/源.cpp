@@ -19,7 +19,7 @@
 //	return 0;
 //}
 //
-//  2.模拟实现 strlen 函数
+//  1.1 模拟实现 strlen 函数
 //int my_strlen(const char* str)
 //{
 //	int count = 0;
@@ -41,7 +41,7 @@
 //	return 0;
 //}
 // 
-// 3.模拟实现 strcpy
+// 1.2 模拟实现 strcpy
 // strcpy(arr1,arr2)   将第二个字符数组的内容复制到第一个字符数组中
 // 字符串结束标志 '\0' 也会一同拷贝
 //char* my_strcpy(char* dest, const char* str)
@@ -68,7 +68,7 @@
 //	return 0;
 //}
 //
-// 4.模拟实现 strcat
+// 1.3 模拟实现 strcat
 char* my_strcat(char* str1, const char* str2)
 {
 	char* ret = str1;
@@ -92,7 +92,96 @@ int main()
 	return 0;
 
 }
-// 5.
+1.4  模拟实现 strcmp
+int my_strcmp(const char* str1, const char* str2)
+{
+	assert(*str1 && *str2);
+	while (*str1 == *str2)
+	{
+		if (*str1 == '\0')
+		{
+			return 0;
+		}
+		*str1++;
+		*str2++;
+	}
+	if (*str1 > *str2)
+	{
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
+}
+int main()
+{
+	char arr1[20] = "zhangsan" ;
+	char arr2[] = "zhangsanfeng";
+
+	//int ret = strcmp(arr1, arr2);
+	
+	int ret = my_strcmp(arr1, arr2);
+	if (ret < 0)
+	{
+		printf("<\n");
+	}
+	else if(ret == 0)
+	{
+		printf("==\n");
+	}
+	else 
+	{
+		printf(">\n");
+	}
+//
+// 长度受限制函数
+2.1  strncpy
+ char * strncpy ( char * destination, const char * source, size_t num );
+int main()
+{
+	char arr1[20] = { "abcdef" };
+	char arr2[] = { "hello world!" };
+
+	//strcpy(arr1, arr2);
+	strncpy(arr1, arr2, 5);
+	//如果字符不够，会用 \0 顶替
+
+	return 0;
+}
+2.2 strncat
+// char *strncat( char *strDest, const char *strSource, size_t count );
+int main()
+{
+	//strncat
+	char arr1[20] = "hello";
+	char arr2[20] = "bit";
+	strncat(arr1, arr2, 6);
+	//需要几个字符追加几个字符，但会在结尾追加一个 \0
+	return 0;
+}
+2.3 strncmp
+int main()
+{
+	char arr1[] = "abcdef";
+	char arr2[] = "abcd";
+	int ret = strncmp(arr1, arr2, 5 );
+	if (ret == 0)
+	{
+		printf("==\n");
+	}
+	else if (ret > 0)
+	{
+		printf(">\n");
+	}
+	else
+	{
+		printf("<\n");
+	}
+	return 0;
+}
+//
+// 
 // 调整奇偶数顺序
 // 输入	一个整数数组，实现一个函数
 // 调整数字顺序使得奇数位于数组的前半部分，偶数位于数组的后半部分
