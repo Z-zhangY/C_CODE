@@ -4,8 +4,8 @@
 #include<assert.h>
 
 
-// ×÷Òµ
-//  1. ÏİÈëËÀÑ­»·µÄÔ­Òò
+// ä½œä¸š
+//  1. é™·å…¥æ­»å¾ªç¯çš„åŸå› 
 //
 //int main()
 //{
@@ -19,7 +19,7 @@
 //	return 0;
 //}
 //
-//  2.Ä£ÄâÊµÏÖ strlen º¯Êı
+//  1.1 æ¨¡æ‹Ÿå®ç° strlen å‡½æ•°
 //int my_strlen(const char* str)
 //{
 //	int count = 0;
@@ -41,9 +41,9 @@
 //	return 0;
 //}
 // 
-// 3.Ä£ÄâÊµÏÖ strcpy
-// strcpy(arr1,arr2)   ½«µÚ¶ş¸ö×Ö·ûÊı×éµÄÄÚÈİ¸´ÖÆµ½µÚÒ»¸ö×Ö·ûÊı×éÖĞ
-// ×Ö·û´®½áÊø±êÖ¾ '\0' Ò²»áÒ»Í¬¿½±´
+// 1.2 æ¨¡æ‹Ÿå®ç° strcpy
+// strcpy(arr1,arr2)   å°†ç¬¬äºŒä¸ªå­—ç¬¦æ•°ç»„çš„å†…å®¹å¤åˆ¶åˆ°ç¬¬ä¸€ä¸ªå­—ç¬¦æ•°ç»„ä¸­
+// å­—ç¬¦ä¸²ç»“æŸæ ‡å¿— '\0' ä¹Ÿä¼šä¸€åŒæ‹·è´
 //char* my_strcpy(char* dest, const char* str)
 //{
 //	char* ret = dest;
@@ -68,10 +68,123 @@
 //	return 0;
 //}
 //
-// 4.
-// µ÷ÕûÆæÅ¼ÊıË³Ğò
-// ÊäÈë	Ò»¸öÕûÊıÊı×é£¬ÊµÏÖÒ»¸öº¯Êı
-// µ÷ÕûÊı×ÖË³ĞòÊ¹µÃÆæÊıÎ»ÓÚÊı×éµÄÇ°°ë²¿·Ö£¬Å¼ÊıÎ»ÓÚÊı×éµÄºó°ë²¿·Ö
+// 1.3 æ¨¡æ‹Ÿå®ç° strcat
+char* my_strcat(char* str1, const char* str2)
+{
+	char* ret = str1;
+	assert(*str1 && *str2);
+	while (*str1 != '\0')
+	{
+		str1++;
+	}
+	while (*str1++ = *str2++)
+	{
+		;
+	}
+	return ret; 
+}
+int main()
+{
+	char arr1[20] = "hello";
+	char arr2[] = " world!";
+	my_strcat(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+
+}
+1.4  æ¨¡æ‹Ÿå®ç° strcmp
+int my_strcmp(const char* str1, const char* str2)
+{
+	assert(*str1 && *str2);
+	while (*str1 == *str2)
+	{
+		if (*str1 == '\0')
+		{
+			return 0;
+		}
+		*str1++;
+		*str2++;
+	}
+	if (*str1 > *str2)
+	{
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
+}
+int main()
+{
+	char arr1[20] = "zhangsan" ;
+	char arr2[] = "zhangsanfeng";
+
+	//int ret = strcmp(arr1, arr2);
+	
+	int ret = my_strcmp(arr1, arr2);
+	if (ret < 0)
+	{
+		printf("<\n");
+	}
+	else if(ret == 0)
+	{
+		printf("==\n");
+	}
+	else 
+	{
+		printf(">\n");
+	}
+//
+// é•¿åº¦å—é™åˆ¶å‡½æ•°
+2.1  strncpy
+ char * strncpy ( char * destination, const char * source, size_t num );
+int main()
+{
+	char arr1[20] = { "abcdef" };
+	char arr2[] = { "hello world!" };
+
+	//strcpy(arr1, arr2);
+	strncpy(arr1, arr2, 5);
+	//å¦‚æœå­—ç¬¦ä¸å¤Ÿï¼Œä¼šç”¨ \0 é¡¶æ›¿
+
+	return 0;
+}
+2.2 strncat
+// char *strncat( char *strDest, const char *strSource, size_t count );
+int main()
+{
+	//strncat
+	char arr1[20] = "hello";
+	char arr2[20] = "bit";
+	strncat(arr1, arr2, 6);
+	//éœ€è¦å‡ ä¸ªå­—ç¬¦è¿½åŠ å‡ ä¸ªå­—ç¬¦ï¼Œä½†ä¼šåœ¨ç»“å°¾è¿½åŠ ä¸€ä¸ª \0
+	return 0;
+}
+2.3 strncmp
+int main()
+{
+	char arr1[] = "abcdef";
+	char arr2[] = "abcd";
+	int ret = strncmp(arr1, arr2, 5 );
+	if (ret == 0)
+	{
+		printf("==\n");
+	}
+	else if (ret > 0)
+	{
+		printf(">\n");
+	}
+	else
+	{
+		printf("<\n");
+	}
+	return 0;
+}
+//
+// 
+// è°ƒæ•´å¥‡å¶æ•°é¡ºåº
+// è¾“å…¥	ä¸€ä¸ªæ•´æ•°æ•°ç»„ï¼Œå®ç°ä¸€ä¸ªå‡½æ•°
+// è°ƒæ•´æ•°å­—é¡ºåºä½¿å¾—å¥‡æ•°ä½äºæ•°ç»„çš„å‰åŠéƒ¨åˆ†ï¼Œå¶æ•°ä½äºæ•°ç»„çš„ååŠéƒ¨åˆ†
 //
 void move_odd_even(int arr[], int sz)
 {
@@ -104,15 +217,15 @@ int main()
 	int i = 0;
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	// 
-	// ÊäÈëÊı¾İ
+	// è¾“å…¥æ•°æ®
 	for (i = 0; i < sz; i++)
 	{
 		scanf("%d", &arr[i]);
 	}
-	// µ÷ÕûÊı¾İ
+	// è°ƒæ•´æ•°æ®
 	move_odd_even(arr, sz);
 
-	// Êä³öÊı¾İ
+	// è¾“å‡ºæ•°æ®
 	for (i = 0; i < sz; i++)
 	{
 		printf("%d ", arr[i]);
